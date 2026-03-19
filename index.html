@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AKGEC Alumni Meet — 20 March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0e0b;--dark:#1a1710;--panel:#221f17;--line:rgba(255,255,255,.08);
+  --gold:#c9943a;--glo:#e8b45a;--cream:#f5f0e8;--text:#f0ece4;--muted:#8a8070;
+  --card:#ffffff;--ctxt:#1a1710;--cmuted:#6b6358;--cbdr:#e5ddd0;--cfocus:#c9943a;
+  --R:18px;--sha:0 20px 60px rgba(0,0,0,.32);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+input,select,textarea{font-family:inherit;-webkit-appearance:none;appearance:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 15% 0%,rgba(201,148,58,.12) 0%,transparent 55%),
+  radial-gradient(ellipse 50% 40% at 90% 100%,rgba(201,148,58,.07) 0%,transparent 50%);}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 16px 70px}
+
+/* HEADER */
+.site-header{padding:36px 0 26px;text-align:center;border-bottom:1px solid var(--line);margin-bottom:28px}
+.header-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(201,148,58,.13);border:1px solid rgba(201,148,58,.28);border-radius:30px;padding:6px 18px;font-size:11px;font-weight:600;color:var(--glo);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:16px}
+.site-header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,34px);font-weight:800;color:var(--cream);line-height:1.2;margin-bottom:6px}
+.site-header h1 span{color:var(--glo)}
+.site-header p{font-size:13px;color:var(--muted);line-height:1.6}
+.ornament{display:flex;align-items:center;gap:10px;max-width:180px;margin:18px auto 0}
+.ornament::before{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.ornament::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.ornament i{color:var(--gold);font-style:normal;font-size:11px}
+
+/* STEP BAR */
+.step-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:26px}
+.si{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;position:relative}
+.si:not(:last-child)::after{content:'';position:absolute;top:13px;left:calc(50% + 13px);width:calc(100% - 26px);height:1px;background:var(--line);transition:background .4s}
+.si.done:not(:last-child)::after,.si.active:not(:last-child)::after{background:rgba(201,148,58,.4)}
+.sn{width:26px;height:26px;border-radius:50%;background:var(--panel);border:1.5px solid rgba(255,255,255,.1);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted);transition:all .3s;position:relative;z-index:1}
+.si.active .sn{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.si.done .sn{background:rgba(201,148,58,.18);border-color:rgba(201,148,58,.5);color:var(--glo)}
+.sl{font-size:10px;color:var(--muted);font-weight:500;white-space:nowrap}
+.si.active .sl{color:var(--glo)}
+
+/* CARD */
+.card{background:var(--card);border-radius:var(--R);padding:26px 24px 22px;box-shadow:var(--sha);margin-bottom:18px;border:1px solid rgba(201,148,58,.05)}
+.ch{margin-bottom:20px}
+.ch h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ctxt);margin-bottom:3px}
+.ch p{font-size:13px;color:var(--cmuted);line-height:1.55}
+
+/* FIELDS */
+.fg{margin-bottom:14px}
+.fg label{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--cmuted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+.req{color:var(--gold);font-size:13px;line-height:1}
+.opt-tag{font-size:10px;font-weight:500;color:var(--cmuted);background:#f5ede0;border-radius:4px;padding:1px 6px;text-transform:lowercase;letter-spacing:0}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1.5px solid var(--cbdr);border-radius:11px;font-size:15px;color:var(--ctxt);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;line-height:1.5}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--cfocus);box-shadow:0 0 0 3px rgba(201,148,58,.11)}
+.fg input::placeholder,.fg textarea::placeholder{color:#c5bbad;font-size:14px}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9943a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+.fg textarea{resize:none;min-height:80px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:400px){.row2{grid-template-columns:1fr}}
+.dept-row{display:grid;grid-template-columns:1.65fr 1fr;gap:12px}
+@media(max-width:420px){.dept-row{grid-template-columns:1fr}}
+.isec{display:flex;align-items:center;gap:9px;margin:18px 0 12px;font-size:11px;font-weight:700;color:var(--cmuted);text-transform:uppercase;letter-spacing:.8px}
+.isec::after{content:'';flex:1;height:1px;background:var(--cbdr)}
+.cw{position:relative}
+.cc{position:absolute;bottom:9px;right:11px;font-size:11px;color:var(--cmuted);pointer-events:none}
+.cc.warn{color:#d97706}
+
+/* ── CHIP / MULTI-SELECT PILLS ── */
+.chip-label{font-size:11px;font-weight:700;color:var(--cmuted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.chip{
+  padding:8px 14px;border-radius:30px;
+  border:1.5px solid var(--cbdr);background:#fff;
+  font-size:13px;color:var(--cmuted);cursor:pointer;
+  transition:all .18s;-webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.chip:hover{border-color:var(--cfocus);color:var(--ctxt)}
+.chip.on{border-color:var(--gold);background:rgba(201,148,58,.08);color:#7c4e0a;font-weight:600}
+
+/* ── QUICK FEEL MOOD SELECTOR ── */
+.mood-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+@media(max-width:380px){.mood-row{grid-template-columns:repeat(2,1fr)}}
+.mood-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:12px 8px;border-radius:12px;border:1.5px solid var(--cbdr);background:#fff;
+  cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;
+}
+.mood-btn:hover{border-color:var(--cfocus)}
+.mood-btn.on{border-color:var(--gold);background:rgba(201,148,58,.08)}
+.mood-emoji{font-size:24px;line-height:1}
+.mood-txt{font-size:11px;color:var(--cmuted);font-weight:500;text-align:center}
+.mood-btn.on .mood-txt{color:#7c4e0a;font-weight:700}
+
+/* ── STAR RATING ── */
+.star-row{display:flex;gap:6px;margin-bottom:4px}
+.star{font-size:28px;cursor:pointer;transition:transform .15s;-webkit-tap-highlight-color:transparent;line-height:1}
+.star:hover,.star.lit{transform:scale(1.15)}
+.star-label{font-size:11px;color:var(--cmuted);margin-top:4px}
+
+/* ── OPTIONAL TOGGLE BANNER ── */
+.skip-banner{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#fdf8f0;border:1px solid rgba(201,148,58,.2);border-radius:12px;
+  padding:12px 16px;margin-bottom:18px;gap:10px;
+}
+.skip-banner p{font-size:13px;color:var(--cmuted);line-height:1.4;flex:1}
+.skip-banner p strong{color:var(--ctxt);display:block;margin-bottom:2px}
+.toggle-btn{
+  background:var(--gold);color:var(--ink);border:none;border-radius:20px;
+  padding:7px 16px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer;
+  transition:opacity .2s;flex-shrink:0;
+}
+.toggle-btn:hover{opacity:.85}
+.toggle-btn.off{background:var(--cbdr);color:var(--cmuted)}
+
+/* CAMERA */
+.cam-card{background:var(--card);border-radius:var(--R);padding:24px 22px 20px;margin-bottom:18px;box-shadow:var(--sha);border:1px solid rgba(201,148,58,.05)}
+.cam-card h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ctxt);margin-bottom:3px}
+.cam-card>p{font-size:13px;color:var(--cmuted);line-height:1.55;margin-bottom:16px}
+.cambox{width:100%;aspect-ratio:4/3;max-height:280px;background:#0f0e0b;border-radius:13px;overflow:hidden;position:relative;border:2px solid rgba(201,148,58,.22);margin-bottom:11px}
+.cambox video{width:100%;height:100%;object-fit:cover;display:none}
+.cambox img{width:100%;height:100%;object-fit:cover;display:none}
+.cam-idle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.cam-idle-icon{width:56px;height:56px;border-radius:50%;background:rgba(201,148,58,.1);border:1.5px solid rgba(201,148,58,.2);display:grid;place-items:center;font-size:24px}
+.cam-idle p{font-size:13px;color:var(--muted);text-align:center;line-height:1.5}
+.cam-tag{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--glo));color:var(--ink);font-weight:700;font-size:10px;padding:4px 14px;border-radius:20px;white-space:nowrap;pointer-events:none;display:none}
+.perm-box{background:#fff8ee;border:1px solid rgba(201,148,58,.22);border-radius:10px;padding:12px 14px;margin-bottom:11px;font-size:12.5px;color:#7c5a1e;display:none;line-height:1.65}
+.perm-box strong{display:block;margin-bottom:4px;font-size:13px}
+.cam-row{display:flex;gap:8px;flex-wrap:wrap}
+.cam-row .btn{flex:1;min-width:100px}
+
+/* POST */
+.post-card{background:var(--card);border-radius:var(--R);padding:24px 22px 20px;margin-bottom:18px;box-shadow:var(--sha);border:1px solid rgba(201,148,58,.05)}
+.post-card h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ctxt);margin-bottom:3px}
+.post-card>p{font-size:13px;color:var(--cmuted);line-height:1.55;margin-bottom:16px}
+.post-box{background:#faf7f2;border:1.5px solid var(--cbdr);border-radius:11px;padding:13px 15px;font-size:14px;color:var(--ctxt);line-height:1.7;white-space:pre-wrap;word-break:break-word;min-height:130px;cursor:text;outline:none;margin-bottom:8px;-webkit-user-select:text;user-select:text;-webkit-tap-highlight-color:rgba(201,148,58,.1)}
+.post-box:focus{border-color:var(--cfocus);box-shadow:0 0 0 3px rgba(201,148,58,.1)}
+/* Copy button row */
+.copy-btn-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.btn-copy{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 18px;border-radius:10px;border:1.5px solid var(--gold);
+  background:rgba(201,148,58,.08);color:var(--gold);
+  font-family:"DM Sans",sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;
+  width:auto;
+}
+.btn-copy:active{background:rgba(201,148,58,.2);transform:scale(.97)}
+.btn-copy.copied{background:var(--gold);color:var(--ink)}
+.copy-hint{font-size:11.5px;color:var(--cmuted);line-height:1.4}
+.share-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px}
+@media(max-width:370px){.share-row{grid-template-columns:1fr}}
+.btn-li{background:linear-gradient(135deg,#0077b5,#005885);color:#fff}
+.btn-fb{background:linear-gradient(135deg,#1877f2,#1060cc);color:#fff}
+.btn-x{background:linear-gradient(135deg,#111,#2a2a2a);color:#fff}
+.copy-tip{font-size:11.5px;color:var(--cmuted);text-align:center;margin-top:5px;line-height:1.5}
+
+/* ACTION */
+.action-card{background:var(--panel);border-radius:var(--R);padding:24px 22px 20px;margin-bottom:18px;border:1px solid var(--line)}
+.action-card h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.action-card>p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:18px}
+.btn-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:360px){.btn-pair{grid-template-columns:1fr}}
+
+/* BUTTONS */
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px 18px;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent;overflow:hidden}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:linear-gradient(135deg,#c9943a,#e8b45a);color:var(--ink)}
+.btn-gold:hover{box-shadow:0 6px 20px rgba(201,148,58,.35)}
+.btn-dark{background:var(--dark);color:var(--cream);border:1px solid var(--line)}
+.btn-ghost{background:transparent;border:1.5px solid var(--cbdr);color:var(--cmuted)}
+.btn-ghost:hover{border-color:var(--cfocus);color:var(--ctxt)}
+.btn-mail{background:linear-gradient(135deg,#c0392b,#962d23);color:#fff}
+.btn-dl{background:linear-gradient(135deg,#5b21b6,#7c3aed);color:#fff}
+.btn-sm{padding:10px 16px;font-size:13px;width:auto;border-radius:10px}
+
+#share-canvas{display:none;position:absolute;left:-9999px}
+
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(10,9,7,.9);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(6px)}
+.overlay.on{display:flex}
+.ring{width:50px;height:50px;border:3px solid rgba(201,148,58,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+.ov-text{font-size:15px;font-weight:500;color:var(--cream)}
+
+/* SUCCESS */
+#scr-success{display:none;text-align:center}
+.success-glow{width:80px;height:80px;border-radius:50%;margin:0 auto 18px;background:radial-gradient(circle,rgba(201,148,58,.28) 0%,rgba(201,148,58,.04) 70%);display:grid;place-items:center;font-size:38px;animation:halo 2s ease infinite}
+@keyframes halo{0%,100%{box-shadow:0 0 0 0 rgba(201,148,58,.28)}50%{box-shadow:0 0 0 16px rgba(201,148,58,0)}}
+#scr-success h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--cream);margin-bottom:8px}
+#scr-success .sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:22px}
+.sum-card{background:var(--panel);border-radius:var(--R);padding:20px;border:1px solid var(--line);margin-bottom:18px;text-align:left}
+.sum-card h4{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.sr{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.sr:last-child{border-bottom:none}
+.sr-l{font-size:12px;color:var(--muted);width:115px;flex-shrink:0}
+.sr-v{font-size:13px;color:var(--text);font-weight:500;word-break:break-word}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--panel);color:var(--cream);border-radius:12px;padding:11px 22px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.5);border:1px solid var(--line);transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s;opacity:0;z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+.privacy{text-align:center;font-size:11.5px;color:var(--muted);line-height:1.6;padding:0 10px 20px}
+
+/* ── SITE FOOTER CREDIT ── */
+.site-footer-credit{
+  margin-top:40px;background:#f0ece4;
+  border-top:1px solid #d8d0c4;padding:18px 18px 24px;
+}
+.footer-inner{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+.footer-credit-block{
+  background:#fff;border:1px solid #ddd5c8;border-radius:10px;
+  padding:11px 15px;display:flex;flex-direction:column;gap:6px;
+}
+.footer-row{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.footer-key{
+  font-size:9px;font-weight:700;color:#b08040;
+  text-transform:uppercase;letter-spacing:.9px;
+  white-space:nowrap;flex-shrink:0;min-width:128px;
+}
+.footer-val{font-size:10.5px;color:#4a4035;line-height:1.5}
+.footer-val strong{color:#1a1710;font-weight:600}
+.footer-divider-line{height:1px;background:#ece5d8;margin:1px 0}
+.footer-stack{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.ftech{
+  font-size:9px;color:#7c5a1e;background:#fdf3e3;
+  border:1px solid #e8c98a;border-radius:4px;padding:2px 5px;
+  letter-spacing:.2px;white-space:nowrap;font-weight:500;
+}
+.fsep{color:#c8b89a;font-size:9px;padding:0 1px}
+.footer-copy{font-size:9.5px;color:#9a8f82;letter-spacing:.4px;text-align:center;padding-top:2px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes conffall{0%{transform:translateY(-30px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.au{animation:fadeUp .5s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+</style>
+</head>
+<body>
+<canvas id="share-canvas"></canvas>
+<div class="overlay" id="overlay"><div class="ring"></div><div class="ov-text" id="ov-txt">Saving…</div></div>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="site-header au">
+  <div class="header-pill">✦ 19th Alumni Meet · 20 March 2026</div>
+  <h1>Welcome Back,<br><span>AKGEC Alumni!</span></h1>
+  <p>Ajay Kumar Garg Engineering College, Ghaziabad</p>
+  <div class="ornament"><i>✦</i></div>
+</header>
+
+<!-- STEP BAR -->
+<div class="step-bar au d1" id="step-bar">
+  <div class="si active" id="si0"><div class="sn">1</div><div class="sl">Your Info</div></div>
+  <div class="si" id="si1"><div class="sn">2</div><div class="sl">More Details</div></div>
+  <div class="si" id="si2"><div class="sn">3</div><div class="sl">Experience</div></div>
+  <div class="si" id="si3"><div class="sn">4</div><div class="sl">Photo &amp; Share</div></div>
+</div>
+
+<div id="scr-form">
+
+<!-- ══ STEP 0 — REQUIRED INFO ══ -->
+<div id="step-0">
+<div class="card au">
+  <div class="ch"><h2>Essential Details</h2><p>Fields marked <span style="color:var(--gold)">✦</span> are required</p></div>
+
+  <div class="fg"><label>👤 Full Name <span class="req">✦</span></label>
+    <input id="f-name" type="text" placeholder="e.g. Rahul Sharma" autocomplete="name"></div>
+
+  <div class="row2">
+    <div class="fg"><label>📱 Mobile <span class="req">✦</span></label>
+      <input id="f-phone" type="tel" placeholder="98XXXXXXXX" autocomplete="tel"></div>
+    <div class="fg"><label>📧 Email <span class="req">✦</span></label>
+      <input id="f-email" type="email" placeholder="you@gmail.com" autocomplete="email"></div>
+  </div>
+
+  <!-- DEPARTMENT + BRANCH LINKED -->
+  <div class="dept-row">
+    <div class="fg">
+      <label>Department <span class="req">✦</span></label>
+      <select id="f-dept" onchange="onDeptChange()">
+        <option value="">Select Department</option>
+        <option value="Electronics and Communication Engineering">Electronics &amp; Communication Engg.</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Civil Engineering">Civil Engineering</option>
+        <option value="Electrical and Electronics Engineering">Electrical &amp; Electronics Engg.</option>
+        <option value="Computer Science and Engineering">Computer Science &amp; Engineering</option>
+        <option value="Information Technology">Information Technology</option>
+        <option value="Master of Computer Applications">Master of Computer Applications</option>
+        <option value="Master of Business Administration">Master of Business Administration</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Branch <span class="req">✦</span></label>
+      <select id="f-branch" disabled>
+        <option value="">— pick dept —</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label>Passing Year <span class="req">✦</span></label>
+    <select id="f-year"><option value="">Select Year</option></select>
+  </div>
+
+  <div class="isec">Professional</div>
+
+  <div class="fg"><label>🏢 Current Company <span class="req">✦</span></label>
+    <input id="f-company" type="text" placeholder="e.g. Google, TCS, Own Business…"></div>
+  <div class="fg"><label>💼 Current Designation <span class="req">✦</span></label>
+    <input id="f-role" type="text" placeholder="e.g. Software Engineer, Product Manager…"></div>
+  <div class="fg"><label>🏁 First Company After AKGEC <span class="req">✦</span></label>
+    <input id="f-first-co" type="text" placeholder="e.g. Infosys, Wipro, Startup…"></div>
+
+  <div class="isec">Social Profiles</div>
+
+  <div class="fg"><label>in LinkedIn URL <span class="req">✦ preferred</span></label>
+    <input id="f-linkedin" type="url" placeholder="https://linkedin.com/in/your-profile" oninput="socialCheck()"></div>
+  <div class="fg">
+    <span class="chip-label" style="font-size:10.5px;color:var(--cmuted);font-weight:500;text-transform:none;letter-spacing:0">
+      <em>Or fill at least one of these if not on LinkedIn:</em>
+    </span>
+  </div>
+  <div class="row2">
+    <div class="fg"><label>📘 Facebook</label>
+      <input id="f-fb" type="url" placeholder="facebook.com/you" oninput="socialCheck()"></div>
+    <div class="fg"><label>𝕏 Twitter / X</label>
+      <input id="f-x" type="text" placeholder="@handle" oninput="socialCheck()"></div>
+  </div>
+
+  <button class="btn btn-gold" style="margin-top:6px" onclick="goStep(1)">Continue →</button>
+</div>
+</div>
+
+<!-- ══ STEP 1 — MORE DETAILS (tap-to-select, minimal writing) ══ -->
+<div id="step-1" style="display:none">
+<div class="card au">
+  <div class="ch">
+    <h2>A Bit More About You</h2>
+    <p>Everything here is optional — just tap to select, no typing needed!</p>
+  </div>
+
+  <!-- Skip entire section -->
+  <div class="skip-banner">
+    <p><strong>Short on time?</strong> Skip this section and go straight to your experience.</p>
+    <button class="toggle-btn" id="skip-btn" onclick="toggleStep1()">Skip All →</button>
+  </div>
+
+  <div id="step1-content">
+
+    <!-- City (text, optional) -->
+    <div class="fg"><label>📍 City / Location <span class="opt-tag">optional</span></label>
+      <input id="f-city" type="text" placeholder="e.g. Bangalore, Noida, New York…"></div>
+
+    <!-- Higher Education — chips -->
+    <div class="fg">
+      <span class="chip-label">🎓 Higher Education <span class="opt-tag">tap to select</span></span>
+      <div class="chips" id="edu-chips">
+        <div class="chip" onclick="toggleChip(this,'edu')">M.Tech</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">MBA</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">MCA</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">MS (Abroad)</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">PhD</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">PG Diploma</div>
+        <div class="chip" onclick="toggleChip(this,'edu')">No higher education</div>
+      </div>
+      <input id="f-edu-other" type="text" placeholder="Or type your own (e.g. LLB, CA, CFA…)" style="margin-top:8px;width:100%;padding:9px 12px;border:1.5px solid var(--cbdr);border-radius:9px;font-size:13px;color:var(--ctxt);outline:none;" onfocus="this.style.borderColor='var(--cfocus)'" onblur="this.style.borderColor='var(--cbdr)'">
+    </div>
+
+    <!-- Career Level — chips (single select) -->
+    <div class="fg">
+      <span class="chip-label">🚀 Current Career Level <span class="opt-tag">tap to select</span></span>
+      <div class="chips" id="career-chips">
+        <div class="chip" onclick="toggleChip(this,'career',true)">Fresher / Junior</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">Mid-level</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">Senior / Lead</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">Manager / Director</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">VP / C-Suite</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">Entrepreneur / Founder</div>
+        <div class="chip" onclick="toggleChip(this,'career',true)">Freelancer / Consultant</div>
+      </div>
+    </div>
+
+    <!-- Industry — chips (multi select) -->
+    <div class="fg">
+      <span class="chip-label">🏭 Industry / Sector <span class="opt-tag">select all that apply</span></span>
+      <div class="chips" id="industry-chips">
+        <div class="chip" onclick="toggleChip(this,'industry')">IT / Software</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">AI / ML / Data</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Cloud / DevOps</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Cybersecurity</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Fintech / BFSI</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">E-commerce</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Edtech</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Healthtech</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Manufacturing</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Government / PSU</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Startup / VC</div>
+        <div class="chip" onclick="toggleChip(this,'industry')">Academia / Research</div>
+      </div>
+    </div>
+
+    <!-- Mentoring — chips (single) -->
+    <div class="fg">
+      <span class="chip-label">🤝 Open to Mentoring / Collaboration? <span class="opt-tag">tap to select</span></span>
+      <div class="chips" id="mentor-chips">
+        <div class="chip" onclick="toggleChip(this,'mentor',true)">Yes — happy to mentor!</div>
+        <div class="chip" onclick="toggleChip(this,'mentor',true)">Open for internship / placements</div>
+        <div class="chip" onclick="toggleChip(this,'mentor',true)">Both mentoring &amp; placements</div>
+        <div class="chip" onclick="toggleChip(this,'mentor',true)">Not right now</div>
+      </div>
+    </div>
+
+    <!-- Quick fact about yourself — short textarea, truly optional -->
+    <div class="fg">
+      <label>⭐ One Quick Achievement <span class="opt-tag">optional · 1 line</span></label>
+      <input id="f-achieve" type="text" placeholder="e.g. Built a startup, led a team of 50, filed a patent…">
+    </div>
+
+  </div><!-- /step1-content -->
+
+  <div style="display:flex;gap:10px;margin-top:6px">
+    <button class="btn btn-ghost btn-sm" style="flex:0 0 auto" onclick="goStep(0)">← Back</button>
+    <button class="btn btn-gold" onclick="goStep(2)">Continue →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ STEP 2 — EXPERIENCE (tap-first, minimal writing) ══ -->
+<div id="step-2" style="display:none">
+<div class="card au">
+  <div class="ch">
+    <h2>Your Alumni Meet Experience</h2>
+    <p>Tap to share — everything is optional except the overall mood!</p>
+  </div>
+
+  <!-- MOOD (required, single select) -->
+  <div class="fg">
+    <span class="chip-label">😊 How did today feel overall? <span class="req">✦</span></span>
+    <div class="mood-row" id="mood-btns">
+      <button class="mood-btn" onclick="pickMood(this,'Fantastic! 🤩')">
+        <span class="mood-emoji">🤩</span><span class="mood-txt">Fantastic!</span>
+      </button>
+      <button class="mood-btn" onclick="pickMood(this,'Really good 😊')">
+        <span class="mood-emoji">😊</span><span class="mood-txt">Really good</span>
+      </button>
+      <button class="mood-btn" onclick="pickMood(this,'It was nice 🙂')">
+        <span class="mood-emoji">🙂</span><span class="mood-txt">It was nice</span>
+      </button>
+      <button class="mood-btn" onclick="pickMood(this,'Could be better 😐')">
+        <span class="mood-emoji">😐</span><span class="mood-txt">Could be better</span>
+      </button>
+    </div>
+    <input type="hidden" id="f-mood" value="">
+  </div>
+
+  <!-- STAR RATING for the event -->
+  <div class="fg">
+    <span class="chip-label">⭐ Rate the Alumni Meet <span class="opt-tag">tap a star</span></span>
+    <div class="star-row" id="star-row">
+      <span class="star" onclick="rateStar(1)">☆</span>
+      <span class="star" onclick="rateStar(2)">☆</span>
+      <span class="star" onclick="rateStar(3)">☆</span>
+      <span class="star" onclick="rateStar(4)">☆</span>
+      <span class="star" onclick="rateStar(5)">☆</span>
+    </div>
+    <div class="star-label" id="star-label">Tap a star to rate</div>
+    <input type="hidden" id="f-rating" value="">
+  </div>
+
+  <!-- WHAT YOU ENJOYED — chips (multi) -->
+  <div class="fg">
+    <span class="chip-label">✨ What did you enjoy most? <span class="opt-tag">select all that apply</span></span>
+    <div class="chips" id="enjoy-chips">
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Meeting old friends</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Reconnecting with faculty</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Campus nostalgia walk</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Canteen / food</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Group photo</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Networking</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Felicitation ceremony</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Cultural programme</div>
+      <div class="chip" onclick="toggleChip(this,'enjoy')">Everything!</div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU FELT NOSTALGIC ABOUT — chips -->
+  <div class="fg">
+    <span class="chip-label">💭 What brought back memories? <span class="opt-tag">select all that apply</span></span>
+    <div class="chips" id="nostalgic-chips">
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">My old classroom</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">The canteen / hostel</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">My favourite teacher</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">Lab memories</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">Library sessions</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">Campus greenery</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">Batch photo spots</div>
+      <div class="chip" onclick="toggleChip(this,'nostalgic')">College events / fests</div>
+    </div>
+  </div>
+
+  <!-- SHORT PERSONAL NOTE — truly optional, 1–2 lines only -->
+  <div class="fg">
+    <label>📝 Anything else to add? <span class="opt-tag">optional · 1–2 lines</span></label>
+    <div class="cw">
+      <textarea id="f-note" placeholder="A quick thought, memory, or shout-out… (completely optional)" rows="2" oninput="cc('f-note','ccn',180);buildPost()"></textarea>
+      <span class="cc" id="ccn">0/180</span>
+    </div>
+  </div>
+
+  <!-- MSG FOR AKGEC — chips -->
+  <div class="fg">
+    <span class="chip-label">💬 Message for AKGEC <span class="opt-tag">tap to select</span></span>
+    <div class="chips" id="msg-chips">
+      <div class="chip" onclick="toggleChip(this,'msgakgec',true)">Thank you for everything, AKGEC! 🙏</div>
+      <div class="chip" onclick="toggleChip(this,'msgakgec',true)">Keep nurturing great engineers! 🏆</div>
+      <div class="chip" onclick="toggleChip(this,'msgakgec',true)">AKGEC made me who I am today ❤️</div>
+      <div class="chip" onclick="toggleChip(this,'msgakgec',true)">Always in my heart, always my college 🎓</div>
+      <div class="chip" onclick="toggleChip(this,'msgakgec',true)">Looking forward to many more meets!</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-top:6px">
+    <button class="btn btn-ghost btn-sm" style="flex:0 0 auto" onclick="goStep(1)">← Back</button>
+    <button class="btn btn-gold" onclick="goStep(3)">Continue →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ STEP 3 — PHOTO + SHARE + SUBMIT ══ -->
+<div id="step-3" style="display:none">
+
+<div class="cam-card au">
+  <h2>📸 Group Selfie</h2>
+  <p>Tap <strong>Open Camera</strong> to take a group selfie. Your photo appears on the share card.</p>
+
+  <div class="cambox" id="cambox">
+    <video id="cam-vid" autoplay playsinline muted></video>
+    <img id="cam-img" alt="">
+    <div class="cam-idle" id="cam-idle">
+      <div class="cam-idle-icon">📷</div>
+      <p>Tap <strong>Open Camera</strong> to take a photo.</p>
+    </div>
+    <div class="cam-tag" id="cam-tag">AKGEC Alumni Meet · 20 March 2026</div>
+  </div>
+
+  <!-- Inline error message (only shown if truly blocked, not just pending) -->
+  <div id="cam-blocked" style="display:none;background:#fff8ee;border:1px solid rgba(201,148,58,.3);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:12.5px;color:#7c5a1e;line-height:1.6">
+    Camera not available in this browser. Tap <strong>From Gallery</strong> to pick a photo instead.
+  </div>
+
+  <div class="cam-row">
+    <!-- On mobile: native capture (no permission prompt needed) -->
+    <!-- On desktop: getUserMedia stream -->
+    <button class="btn btn-gold btn-sm" id="btn-open" onclick="openCam()">📷 Open Camera</button>
+    <button class="btn btn-gold btn-sm" id="btn-snap" onclick="snapPhoto()" style="display:none">📸 Snap!</button>
+    <button class="btn btn-dark btn-sm" id="btn-flip" onclick="flipCam()" style="display:none">🔄 Flip</button>
+    <button class="btn btn-ghost btn-sm" id="btn-redo" onclick="retakePhoto()" style="display:none">↩️ Retake</button>
+    <button class="btn btn-ghost btn-sm" onclick="doUpload()">📁 From Gallery</button>
+    <!-- Native capture inputs -->
+    <input type="file" id="file-in"  accept="image/*"               style="display:none" onchange="handleUpload(event)">
+    <input type="file" id="file-cam" accept="image/*" capture="user" style="display:none" onchange="handleUpload(event)">
+  </div>
+</div>
+
+<!-- ① SUBMIT FIRST — mandatory -->
+<div class="action-card au">
+  <h2>You're almost there! 🎉</h2>
+  <p style="color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:18px">
+    Tap below to officially record your attendance at the 19th AKGEC Alumni Meet.
+  </p>
+  <button class="btn btn-gold" id="btn-submit" onclick="submitForm()" style="font-size:16px;padding:16px 20px">
+    <span>✦</span><span>Submit &amp; Record Attendance</span>
+  </button>
+  <p style="font-size:11px;color:var(--muted);text-align:center;margin:8px 0 0">
+    ⚠️ Required — your attendance is not recorded until you tap this
+  </p>
+  <div style="margin-top:12px">
+    <button class="btn btn-ghost btn-sm" style="width:auto" onclick="goStep(2)">← Back</button>
+  </div>
+</div>
+
+<!-- ② SOCIAL SHARE — after submit -->
+<div class="post-card au d1">
+  <h2>✍️ Your Post, Ready to Share</h2>
+  <p style="font-size:13px;color:var(--cmuted);margin-bottom:12px">Tap inside the box to edit. Tap <strong>Copy Post</strong> to copy everything — then paste when sharing.</p>
+  <div class="post-box" id="post-box" contenteditable="true"
+    spellcheck="true"
+    oninput="postEdited=true"
+    style="border-color:var(--cfocus);box-shadow:0 0 0 2px rgba(201,148,58,.08);-webkit-user-select:text;user-select:text"></div>
+  <div class="copy-btn-row">
+    <button class="btn-copy" id="copy-btn-step3" onclick="copyPost('copy-btn-step3','post-box')">
+      📋 Copy Post
+    </button>
+    <span class="copy-hint">Tap once · copies everything · paste anywhere</span>
+  </div>
+  <div class="share-row">
+    <button class="btn btn-li" onclick="shareOn('linkedin')">in LinkedIn</button>
+    <button class="btn btn-fb" onclick="shareOn('facebook')">📘 Facebook</button>
+    <button class="btn btn-x"  onclick="shareOn('x')">𝕏 Post on X</button>
+  </div>
+  <div style="margin-top:10px">
+    <button class="btn btn-dl btn-sm" onclick="downloadCard()" style="width:auto">⬇️ Download Alumni Card</button>
+  </div>
+  <p class="copy-tip" style="margin-top:8px">On mobile the card image is automatically attached. On desktop, download and attach manually.</p>
+</div>
+
+<!-- ③ EMAIL — optional, last -->
+<div style="background:var(--card);border-radius:var(--R);padding:20px 22px;margin-bottom:18px;box-shadow:var(--sha);border:1px solid rgba(201,148,58,.05)" class="au d2">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ctxt);margin-bottom:4px">📧 Email a Copy to Yourself</p>
+  <p style="font-size:13px;color:var(--cmuted);line-height:1.55;margin-bottom:14px">
+    Optionally receive all your submitted details on your email — handy for your records.
+  </p>
+  <button class="btn btn-ghost" onclick="sendEmail()" style="border-color:#d0c8bc;color:var(--cmuted)">
+    <span>📧</span><span>Send Email Copy (Optional)</span>
+  </button>
+</div>
+
+<p class="privacy">Your data is collected only for AKGEC Alumni records and will not be shared with third parties.</p>
+</div><!-- /step-3 -->
+</div><!-- /scr-form -->
+
+<!-- SUCCESS -->
+<div id="scr-success" class="au">
+  <div class="success-glow">🎓</div>
+  <h2>You're Registered!</h2>
+  <p class="sub">Thank you for attending the 19th AKGEC Alumni Meet.<br>Your details have been recorded.</p>
+  <div class="sum-card" id="sum-card"><h4>Your Summary</h4></div>
+
+  <!-- Download card -->
+  <button class="btn btn-gold" style="margin-bottom:12px" onclick="downloadCard()">⬇️ Download Your Alumni Card</button>
+
+  <!-- Social share with FULL editable post box -->
+  <div class="post-card" style="margin-top:0;margin-bottom:12px">
+    <h2 style="margin-bottom:4px">📣 Your Post, Ready to Share</h2>
+    <p style="font-size:13px;color:var(--cmuted);margin-bottom:12px;line-height:1.5">
+      Auto-generated from your selections. Edit freely, then tap a platform to post.
+    </p>
+    <!-- Editable post box — populated by showSuccess() -->
+    <div class="post-box" id="success-post-box" contenteditable="true"
+      spellcheck="true" autocorrect="on"
+      style="min-height:160px;margin-bottom:8px;border-color:var(--cfocus);box-shadow:0 0 0 2px rgba(201,148,58,.08)"
+      oninput="successPostEdited=true"></div>
+    <div class="copy-btn-row">
+      <button class="btn-copy" id="copy-btn-success" onclick="copyPost('copy-btn-success','success-post-box')">
+        📋 Copy Post
+      </button>
+      <span class="copy-hint">Tap once to copy all · then paste in your app</span>
+    </div>
+    <div class="share-row">
+      <button class="btn btn-li" onclick="shareOn('linkedin')">in LinkedIn</button>
+      <button class="btn btn-fb" onclick="shareOn('facebook')">📘 Facebook</button>
+      <button class="btn btn-x"  onclick="shareOn('x')">𝕏 X</button>
+    </div>
+    <div style="margin-top:10px">
+      <button class="btn btn-dl btn-sm" onclick="downloadCard()" style="width:auto">⬇️ Download Alumni Card</button>
+    </div>
+    <p class="copy-tip" style="margin-top:8px">On mobile the card + post are automatically shared. On desktop, download and attach manually.</p>
+  </div>
+
+  <!-- Email optional -->
+  <button class="btn btn-ghost" style="margin-bottom:18px;border-color:#d0c8bc;color:var(--muted)" onclick="sendEmail()">
+    <span>📧</span><span>Email a Copy to Myself (Optional)</span>
+  </button>
+
+  <p class="privacy">See you at the next AKGEC Alumni Meet! 🎉</p>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer-credit">
+  <div class="footer-inner">
+    <div class="footer-credit-block">
+
+      <!-- Designer row -->
+      <div class="footer-row">
+        <span class="footer-key">Designed &amp; Developed by</span>
+        <span class="footer-val">
+          <strong>Dr. Akhilesh Verma</strong>
+          &nbsp;·&nbsp; Professor, Dept. of Computer Science &amp; Engineering, AKGEC, Ghaziabad
+        </span>
+      </div>
+
+      <div class="footer-divider-line"></div>
+
+      <!-- Co-developed row -->
+      <div class="footer-row">
+        <span class="footer-key">Co-developed with</span>
+        <span class="footer-val">
+          <strong>Claude AI · Sonnet 4.6</strong>
+          &nbsp;(Anthropic)
+        </span>
+      </div>
+
+      <div class="footer-divider-line"></div>
+
+      <!-- Stack row -->
+      <div class="footer-row" style="align-items:center">
+        <span class="footer-key">Tech Stack</span>
+        <div class="footer-stack">
+          <span class="ftech">HTML5</span>
+          <span class="fsep">·</span>
+          <span class="ftech">CSS3</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Vanilla JS</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Canvas API</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Web Share API</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Google Apps Script</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Google Sheets</span>
+          <span class="fsep">·</span>
+          <span class="ftech">Vercel</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="footer-copy">© 2026 AKGEC · Ghaziabad · www.akgec.ac.in</p>
+
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+// ══════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════
+const SHEET_URL='https://script.google.com/macros/s/AKfycbyL20cNAR6YKvRqUO00B7ldNeWaCjvq49nns-JzZPO3GyqMSO_UHMwzJWTCPYvm02a0hQ/exec';
+const MAIL_TO='vermaakhilesh@akgec.ac.in,kaurinderjeet@akgec.ac.in';
+const AKGEC_LI='https://www.linkedin.com/school/officialakgec/posts/?feedView=all';
+
+// ══════════════════════════════════════════
+// DEPT → BRANCH MAP
+// ══════════════════════════════════════════
+const DEPT_MAP={
+  'Electronics and Communication Engineering':['ECE','EI','M.Tech (ECE)'],
+  'Mechanical Engineering':['ME','M.Tech (ME)'],
+  'Civil Engineering':['CE'],
+  'Electrical and Electronics Engineering':['EN','EE'],
+  'Computer Science and Engineering':['CSE','CSE-AIML','CSE-DS','AIML','M.Tech (CSE)'],
+  'Information Technology':['IT','CSIT'],
+  'Master of Computer Applications':['MCA'],
+  'Master of Business Administration':['MBA']
+};
+
+const DEPT_FULL={
+  'Electronics and Communication Engineering':'Electronics & Communication Engineering',
+  'Mechanical Engineering':'Mechanical Engineering',
+  'Civil Engineering':'Civil Engineering',
+  'Electrical and Electronics Engineering':'Electrical & Electronics Engineering',
+  'Computer Science and Engineering':'Computer Science & Engineering',
+  'Information Technology':'Information Technology',
+  'Master of Computer Applications':'Master of Computer Applications',
+  'Master of Business Administration':'Master of Business Administration'
+};
+
+// Populate year dropdown
+(function(){
+  const sel=document.getElementById('f-year');
+  for(let y=2025;y>=1998;y--){
+    const o=document.createElement('option');o.value=y;o.textContent=y;sel.appendChild(o);
+  }
+})();
+
+function onDeptChange(){
+  const dv=document.getElementById('f-dept').value;
+  const bs=document.getElementById('f-branch');
+  bs.innerHTML='';
+  const branches=DEPT_MAP[dv]||[];
+  if(!dv){bs.innerHTML='<option value="">— pick dept first —</option>';bs.disabled=true;return;}
+  bs.disabled=false;
+  bs.innerHTML='<option value="">Select Branch</option>';
+  branches.forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;bs.appendChild(o);});
+  buildPost();
+}
+
+// ══════════════════════════════════════════
+// CHIP SELECTION LOGIC
+// ══════════════════════════════════════════
+function toggleChip(el, group, single=false){
+  if(single){
+    // deselect all in group first
+    document.querySelectorAll('#'+group+'-chips .chip').forEach(c=>c.classList.remove('on'));
+  }
+  el.classList.toggle('on');
+  buildPost();
+}
+
+function getChips(group){
+  return Array.from(document.querySelectorAll('#'+group+'-chips .chip.on')).map(c=>c.textContent.trim());
+}
+
+// ══════════════════════════════════════════
+// MOOD SELECTOR
+// ══════════════════════════════════════════
+function pickMood(el, val){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('f-mood').value=val;
+  buildPost();
+}
+
+// ══════════════════════════════════════════
+// STAR RATING
+// ══════════════════════════════════════════
+let starVal=0;
+const starLabels=['','Poor','Fair','Good','Very Good','Excellent!'];
+function rateStar(n){
+  starVal=n;
+  document.getElementById('f-rating').value=n;
+  document.getElementById('star-label').textContent=starLabels[n]+' ('+n+'/5)';
+  document.querySelectorAll('#star-row .star').forEach((s,i)=>{
+    s.textContent=i<n?'★':'☆';
+    s.classList.toggle('lit',i<n);
+    s.style.color=i<n?'var(--gold)':'var(--cbdr)';
+  });
+  buildPost();
+}
+
+// ══════════════════════════════════════════
+// STEP 1 SKIP TOGGLE
+// ══════════════════════════════════════════
+let step1Skipped=false;
+function toggleStep1(){
+  step1Skipped=!step1Skipped;
+  const content=document.getElementById('step1-content');
+  const btn=document.getElementById('skip-btn');
+  content.style.display=step1Skipped?'none':'block';
+  btn.textContent=step1Skipped?'↩ Fill details':'Skip All →';
+  btn.classList.toggle('off',step1Skipped);
+}
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let photo=null,camStream=null,facingFront=true,postEdited=false,submitted=false,formData={},curStep=0;
+
+// ══════════════════════════════════════════
+// STEP NAV
+// ══════════════════════════════════════════
+function goStep(n){
+  if(n>curStep&&!validate(curStep))return;
+  document.getElementById('step-'+curStep).style.display='none';
+  document.getElementById('step-'+n).style.display='block';
+  for(let i=0;i<4;i++){
+    const el=document.getElementById('si'+i);
+    el.classList.remove('active','done');
+    el.querySelector('.sn').textContent=i+1;
+    if(i<n){el.classList.add('done');el.querySelector('.sn').textContent='✓';}
+    if(i===n)el.classList.add('active');
+  }
+  curStep=n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===3)buildPost();
+}
+
+// ══════════════════════════════════════════
+// VALIDATION
+// ══════════════════════════════════════════
+function v(id){return(document.getElementById(id)?.value||'').trim();}
+function validate(step){
+  if(step===0){
+    const checks=[
+      [v('f-name'),'Please enter your full name'],
+      [v('f-phone'),'Please enter your mobile number'],
+      [v('f-email'),'Please enter your email address'],
+      [v('f-dept'),'Please select your department'],
+      [v('f-branch'),'Please select your branch'],
+      [v('f-year'),'Please select your passing year'],
+      [v('f-company'),'Please enter your current company'],
+      [v('f-role'),'Please enter your current designation'],
+      [v('f-first-co'),'Please enter your first company after AKGEC'],
+      // social validated separately via socialCheck()
+    ];
+    for(const[val,msg]of checks){if(!val){toast('⚠️ '+msg);return false;}}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('f-email'))){toast('⚠️ Please enter a valid email');return false;}
+    if(!v('f-linkedin')&&!v('f-fb')&&!v('f-x')){toast('⚠️ Please fill at least one social media link (LinkedIn preferred)');return false;}
+  }
+  if(step===2){
+    if(!v('f-mood')){toast('⚠️ Please select how today felt (tap a mood)');return false;}
+  }
+  return true;
+}
+
+// CHAR COUNT
+function cc(fid,cid,max){
+  const el=document.getElementById(fid),cnt=document.getElementById(cid);
+  const len=el.value.length;cnt.textContent=len+'/'+max;cnt.classList.toggle('warn',len>max*.85);
+  if(len>max)el.value=el.value.substring(0,max);
+}
+
+// ══════════════════════════════════════════
+// CAMERA
+// ══════════════════════════════════════════
+function openCam(){
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  // ── MOBILE: use native <input capture> — opens camera directly, no permission dialog ──
+  if(isMobile){
+    document.getElementById('file-cam').click();
+    return;
+  }
+
+  // ── DESKTOP: use getUserMedia stream (shows browser permission prompt) ──
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    document.getElementById('cam-blocked').style.display = 'block';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({ audio:false, video:{ facingMode:'user' } })
+  .then(stream => startStream(stream))
+  .catch(() => {
+    // Try without facingMode constraint as last resort
+    navigator.mediaDevices.getUserMedia({ audio:false, video:true })
+    .then(stream => startStream(stream))
+    .catch(() => {
+      document.getElementById('cam-blocked').style.display = 'block';
+    });
+  });
+}
+
+function startStream(stream){
+  camStream = stream;
+  const vid = document.getElementById('cam-vid');
+  vid.srcObject = stream;
+  vid.style.display = 'block';
+  vid.play().catch(()=>{});
+  document.getElementById('cam-idle').style.display   = 'none';
+  document.getElementById('cam-tag').style.display    = 'block';
+  document.getElementById('cam-blocked').style.display = 'none';
+  document.getElementById('btn-open').style.display   = 'none';
+  document.getElementById('btn-snap').style.display   = 'flex';
+  // Show flip only on mobile devices that have multiple cameras
+  if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+    document.getElementById('btn-flip').style.display = 'flex';
+  }
+}
+
+function flipCam(){
+  facingFront = !facingFront;
+  stopCam();
+  navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: { facingMode: facingFront ? 'user' : 'environment' }
+  })
+  .then(stream => startStream(stream))
+  .catch(() => toast('Could not switch camera'));
+}
+function snapPhoto(){
+  const vid=document.getElementById('cam-vid');
+  const cvs=document.createElement('canvas');
+  cvs.width=vid.videoWidth||640;cvs.height=vid.videoHeight||480;
+  cvs.getContext('2d').drawImage(vid,0,0);
+  photo=cvs.toDataURL('image/jpeg',.92);
+  showPreview(photo);stopCam();toast('✅ Photo taken!');
+}
+function doUpload(){
+  // Opens gallery/file picker (no camera capture attribute = gallery only)
+  document.getElementById('file-in').click();
+}
+function handleUpload(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{photo=ev.target.result;showPreview(photo);toast('✅ Photo uploaded!');};
+  r.readAsDataURL(f);
+}
+function showPreview(src){
+  const img=document.getElementById('cam-img');
+  img.src=src;img.style.display='block';
+  document.getElementById('cam-vid').style.display='none';
+  document.getElementById('cam-idle').style.display='none';
+  document.getElementById('cam-tag').style.display='block';
+  document.getElementById('btn-snap').style.display='none';
+  document.getElementById('btn-flip').style.display='none';
+  document.getElementById('btn-open').style.display='none';
+  document.getElementById('btn-redo').style.display='flex';
+}
+function retakePhoto(){
+  photo=null;
+  document.getElementById('cam-img').style.display='none';
+  document.getElementById('cam-idle').style.display='flex';
+  document.getElementById('cam-tag').style.display='none';
+  document.getElementById('btn-redo').style.display='none';
+  document.getElementById('btn-open').style.display='flex';
+}
+function stopCam(){if(camStream){camStream.getTracks().forEach(t=>t.stop());camStream=null;}}
+
+// Social check helper — updates LinkedIn label
+function socialCheck(){
+  const hasAny=v('f-linkedin')||v('f-fb')||v('f-x');
+  const li=document.getElementById('f-linkedin');
+  if(li)li.style.borderColor=v('f-linkedin')?'var(--cfocus)':hasAny?'var(--cbdr)':'';
+}
+
+// ══════════════════════════════════════════
+// BUILD POST
+// ══════════════════════════════════════════
+function buildPost(){
+  if(postEdited)return;
+  const dept=DEPT_FULL[v('f-dept')]||v('f-dept')||'';
+  const branch=v('f-branch');const brDisp=branch&&branch!=='N/A'?branch:'';
+  const year=v('f-year'),company=v('f-company'),role=v('f-role');
+  const mood=v('f-mood');
+  const enjoyed=getChips('enjoy').join(', ');
+  const nostalgic=getChips('nostalgic').join(', ');
+  const msgAkgec=getChips('msgakgec')[0]||'';
+  const note=v('f-note');
+  const rating=v('f-rating');
+
+  let post='🎓 Attended the 19th AKGEC Alumni Meet — 20 March 2026!\n\n';
+  if(mood)post+='Today felt: '+mood+'\n';
+  if(rating)post+='Event rating: '+'★'.repeat(Number(rating))+'☆'.repeat(5-Number(rating))+'\n';
+  if(mood||rating)post+='\n';
+  if(enjoyed)post+='✨ Enjoyed: '+enjoyed+'\n';
+  if(nostalgic)post+='💭 Nostalgic about: '+nostalgic+'\n';
+  if(enjoyed||nostalgic)post+='\n';
+  if(company&&role)post+='Currently working as '+role+' at '+company+'.\n';
+  else if(company)post+='Currently at '+company+'.\n';
+  if(note)post+='\n'+note+'\n';
+  if(msgAkgec)post+='\n'+msgAkgec+'\n';
+  post+='\nProud to be an AKGEC alumnus';
+  if(dept)post+=' — '+dept;
+  if(brDisp)post+=', '+brDisp;
+  if(year)post+=', Batch of '+year;
+  post+='! 🏛️\n\n#AKGEC #AKGECAlumni #AlumniMeet2026 #AKTU #Ghaziabad #ProudAlum';
+  document.getElementById('post-box').textContent=post;
+}
+
+// ══════════════════════════════════════════
+// BUILD CANVAS CARD
+// ══════════════════════════════════════════
+function buildCard(cb){
+  const cvs=document.getElementById('share-canvas');
+  const ctx=cvs.getContext('2d');
+  const deptKey=v('f-dept');
+  const deptFull=DEPT_FULL[deptKey]||deptKey||'AKGEC';
+  const branchVal=v('f-branch');
+  const brDisp=branchVal&&branchVal!=='N/A'?branchVal:'';
+  const W=1080,PH=photo?660:0,IH=300,BH=130,H=PH+IH+BH;
+  cvs.width=W;cvs.height=H;
+
+  const render=(pImg)=>{
+    if(pImg){
+      ctx.save();ctx.beginPath();ctx.rect(0,0,W,PH);ctx.clip();
+      const ar=pImg.width/pImg.height;
+      let dw=W,dh=W/ar,dx=0,dy=(PH-dh)/2;
+      if(dh<PH){dh=PH;dw=dh*ar;dx=(W-dw)/2;dy=0;}
+      ctx.drawImage(pImg,dx,dy,dw,dh);ctx.restore();
+      const og=ctx.createLinearGradient(0,PH-200,0,PH);
+      og.addColorStop(0,'transparent');og.addColorStop(1,'rgba(10,9,7,.97)');
+      ctx.fillStyle=og;ctx.fillRect(0,PH-200,W,200);
+    }
+    const ig=ctx.createLinearGradient(0,PH,0,PH+IH);
+    ig.addColorStop(0,'#0f0e0b');ig.addColorStop(1,'#1a1710');
+    ctx.fillStyle=ig;ctx.fillRect(0,PH,W,IH);
+    ctx.fillStyle='rgba(201,148,58,.055)';
+    ctx.beginPath();ctx.moveTo(W*.45,PH);ctx.lineTo(W,PH);ctx.lineTo(W,PH+IH);ctx.lineTo(W*.7,PH+IH);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#f5f0e8';ctx.font='bold 54px Georgia,serif';
+    ctx.fillText(v('f-name')||'Alumni',52,PH+68);
+    ctx.fillStyle='rgba(232,180,90,.85)';ctx.font='500 28px sans-serif';
+    const dLine=brDisp?deptFull+' · '+brDisp:deptFull;
+    ctx.fillText(dLine,52,PH+108);
+    const yr=v('f-year'),co=v('f-company'),rl=v('f-role');
+    if(yr||co){
+      ctx.fillStyle='rgba(245,240,232,.45)';ctx.font='26px sans-serif';
+      const parts=[];if(yr)parts.push('Batch of '+yr);if(rl)parts.push(rl);if(co)parts.push(co);
+      ctx.fillText(parts.join('  ·  '),52,PH+148);
+    }
+    const mood=v('f-mood');const rating=v('f-rating');
+    if(mood||rating){
+      ctx.fillStyle='rgba(232,180,90,.5)';ctx.font='22px sans-serif';
+      const mLine=[];
+      if(mood)mLine.push(mood);
+      if(rating)mLine.push('★'.repeat(Number(rating)));
+      ctx.fillText(mLine.join('  ·  '),52,PH+178);
+    }
+    const px=52,py=PH+200,pw=W-104,ph2=58;
+    const pg=ctx.createLinearGradient(px,py,px+pw,py);
+    pg.addColorStop(0,'#c9943a');pg.addColorStop(1,'#e8b45a');
+    ctx.fillStyle=pg;rrect(ctx,px,py,pw,ph2,14);ctx.fill();
+    ctx.fillStyle='#0f0e0b';ctx.font='bold 22px Georgia,serif';
+    ctx.fillText('19th AKGEC Alumni Meet  ✦  20 March 2026',px+20,py+37);
+    const bg=ctx.createLinearGradient(0,PH+IH,W,PH+IH+BH);
+    bg.addColorStop(0,'#c9943a');bg.addColorStop(1,'#e8b45a');
+    ctx.fillStyle=bg;ctx.fillRect(0,PH+IH,W,BH);
+    ctx.fillStyle='#0f0e0b';
+    ctx.font='bold 30px Georgia,serif';ctx.fillText(deptFull,46,PH+IH+46);
+    ctx.font='22px sans-serif';ctx.fillText('Ajay Kumar Garg Engineering College  ·  Ghaziabad, UP  ·  www.akgec.ac.in',46,PH+IH+82);
+    if(cb)cb(cvs);
+  };
+
+  if(photo){const img=new Image();img.onload=()=>render(img);img.onerror=()=>render(null);img.src=photo;}
+  else render(null);
+}
+function rrect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);
+  ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);
+  ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);
+  ctx.arcTo(x,y,x+r,y,r);ctx.closePath();
+}
+
+function downloadCard(){
+  buildCard(cvs=>{
+    const a=document.createElement('a');
+    a.download='AKGEC_Alumni_'+(v('f-name')||'Card').replace(/ /g,'_')+'_2026.png';
+    a.href=cvs.toDataURL('image/png',1.0);a.click();toast('✅ Card downloaded!');
+  });
+}
+
+// ══════════════════════════════════════════
+// COPY POST — one-tap copy whole message
+// ══════════════════════════════════════════
+function copyPost(btnId, boxId){
+  const box = document.getElementById(boxId);
+  const text = box ? box.textContent.trim() : '';
+  if(!text){ toast('No post text to copy yet'); return; }
+  const btn = document.getElementById(btnId);
+
+  // Modern clipboard API
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>{
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(()=>{ btn.textContent = '📋 Copy Post'; btn.classList.remove('copied'); }, 2500);
+    }).catch(()=> fallbackCopy(text, btn));
+  } else {
+    fallbackCopy(text, btn);
+  }
+}
+
+function fallbackCopy(text, btn){
+  // Works on older browsers and some Android WebViews
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;width:1px;height:1px';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try {
+    document.execCommand('copy');
+    if(btn){ btn.textContent = '✅ Copied!'; btn.classList.add('copied'); setTimeout(()=>{ btn.textContent = '📋 Copy Post'; btn.classList.remove('copied'); }, 2500); }
+    toast('✅ Post copied — paste it anywhere!');
+  } catch(e){
+    toast('Long-press the text to copy manually');
+  }
+  document.body.removeChild(ta);
+}
+
+// ══════════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════════
+// Read from whichever post box is currently visible
+const postText = () => {
+  const successBox = document.getElementById('success-post-box');
+  const step3Box   = document.getElementById('post-box');
+  // If success screen is visible, use its box
+  if(document.getElementById('scr-success').style.display !== 'none'){
+    return (successBox?.textContent || '').trim();
+  }
+  return (step3Box?.textContent || '').trim();
+};
+async function shareOn(platform){
+  const text=postText();
+  if(!text){toast('⚠️ Please select your experience first');return;}
+  const getBlob=()=>new Promise(res=>{buildCard(cvs=>cvs.toBlob(b=>res(b),'image/png',1.0));});
+  if(navigator.share&&navigator.canShare){
+    try{
+      const blob=await getBlob();
+      const file=new File([blob],'AKGEC_Alumni_2026.png',{type:'image/png'});
+      if(navigator.canShare({files:[file]})){await navigator.share({files:[file],text,title:'19th AKGEC Alumni Meet 2026'});return;}
+    }catch(e){if(e.name==='AbortError')return;}
+    try{await navigator.share({text,title:'19th AKGEC Alumni Meet 2026'});return;}catch(e){if(e.name==='AbortError')return;}
+  }
+  try{await navigator.clipboard.writeText(text);toast('📋 Post copied — paste it after the page opens!');}
+  catch(e){fallbackCopy(text);}
+  await new Promise(r=>setTimeout(r,400));
+  if(platform==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(AKGEC_LI),'_blank');
+  else if(platform==='facebook')window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://www.akgec.ac.in')+'&quote='+encodeURIComponent(text.substring(0,200)),'_blank');
+  else if(platform==='x')window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text.substring(0,260)),'_blank');
+}
+function fallbackCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+// ══════════════════════════════════════════
+// COLLECT ALL DATA
+// ══════════════════════════════════════════
+function collect(){
+  const deptKey=v('f-dept');
+  const deptFull=DEPT_FULL[deptKey]||deptKey;
+  const branchVal=v('f-branch');
+  return{
+    ts:new Date().toISOString(),
+    submittedAt:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
+    name:v('f-name'),phone:v('f-phone'),email:v('f-email'),
+    department:deptFull,
+    branch:branchVal==='N/A'?'':branchVal,
+    year:v('f-year'),company:v('f-company'),role:v('f-role'),firstCompany:v('f-first-co'),
+    linkedin:v('f-linkedin'),facebook:v('f-fb'),twitter:v('f-x'),
+    city:v('f-city'),
+    higherEdu:getChips('edu').join(', ')||'—',
+    careerLevel:getChips('career')[0]||'—',
+    industry:getChips('industry').join(', ')||'—',
+    mentoring:getChips('mentor')[0]||'—',
+    achievement:v('f-achieve'),
+    mood:v('f-mood'),
+    rating:v('f-rating')?v('f-rating')+'/5':'—',
+    enjoyed:getChips('enjoy').join(', ')||'—',
+    nostalgic:getChips('nostalgic').join(', ')||'—',
+    note:v('f-note'),
+    msgAkgec:getChips('msgakgec')[0]||'—',
+    socialPost:postText(),
+    hasPhoto:photo?'Yes':'No'
+  };
+}
+
+// PUSH TO SHEET
+async function pushSheet(data){
+  if(!SHEET_URL)return;
+  try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({type:'alumni_meet',...data})});}
+  catch(e){console.warn('Sheet sync:',e);}
+}
+
+// SUBMIT
+async function submitForm(){
+  if(!validate(2)){goStep(2);return;}
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('ov-txt').textContent='Saving your details…';
+  formData=collect();
+  await pushSheet(formData);
+  document.getElementById('ov-txt').textContent='Building your card…';
+  buildCard(()=>{});
+  await new Promise(r=>setTimeout(r,1200));
+  document.getElementById('overlay').classList.remove('on');
+  showSuccess();submitted=true;
+}
+
+// SUCCESS
+let successPostEdited = false;
+
+function showSuccess(){
+  stopCam();
+  document.getElementById('scr-form').style.display='none';
+  document.getElementById('step-bar').style.display='none';
+  document.getElementById('scr-success').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  confetti();
+
+  const d=formData;
+  const dLine=d.branch?d.department+' — '+d.branch:d.department;
+  const rows=[['Name',d.name],['Dept / Branch',dLine],['Batch',d.year],['Company',d.role+' at '+d.company],['First Co.',d.firstCompany],['Today felt',d.mood],['Rating',d.rating],['Submitted',d.submittedAt]];
+  document.getElementById('sum-card').innerHTML='<h4>Your Summary</h4>'+rows.map(([l,v2])=>'<div class="sr"><span class="sr-l">'+l+'</span><span class="sr-v">'+(v2||'—')+'</span></div>').join('');
+
+  // Populate the success screen's editable post box
+  // Use whatever is in the step-3 post box (already built), or rebuild from formData
+  const step3Post = document.getElementById('post-box')?.textContent?.trim();
+  const successBox = document.getElementById('success-post-box');
+  if(step3Post && step3Post.length > 10){
+    successBox.textContent = step3Post;
+  } else {
+    // Rebuild post directly from formData fields
+    successBox.textContent = buildPostFromData(d);
+  }
+}
+
+// Build post text from already-collected formData (used on success screen)
+function buildPostFromData(d){
+  let post = '🎓 Attended the 19th AKGEC Alumni Meet — 20 March 2026!\n\n';
+  if(d.mood)   post += 'Today felt: ' + d.mood + '\n';
+  if(d.rating && d.rating !== '—') post += 'Event rating: ' + '★'.repeat(Number(d.rating?.replace('/5','') || 0)) + '\n';
+  if(d.mood || d.rating) post += '\n';
+  if(d.enjoyed   && d.enjoyed   !== '—') post += '✨ Enjoyed: '   + d.enjoyed   + '\n';
+  if(d.nostalgic && d.nostalgic !== '—') post += '💭 Nostalgic: ' + d.nostalgic + '\n';
+  if(d.enjoyed || d.nostalgic) post += '\n';
+  if(d.company && d.role) post += 'Currently working as ' + d.role + ' at ' + d.company + '.\n';
+  else if(d.company)      post += 'Currently at ' + d.company + '.\n';
+  if(d.note    && d.note    !== '—') post += '\n' + d.note    + '\n';
+  if(d.msgAkgec && d.msgAkgec !== '—') post += '\n' + d.msgAkgec + '\n';
+  post += '\nProud to be an AKGEC alumnus';
+  const dept = d.department || '';
+  const br   = (d.branch && d.branch !== 'N/A') ? d.branch : '';
+  if(dept) post += ' — ' + dept;
+  if(br)   post += ', ' + br;
+  if(d.year) post += ', Batch of ' + d.year;
+  post += '! 🏛️\n\n#AKGEC #AKGECAlumni #AlumniMeet2026 #AKTU #Ghaziabad #ProudAlum';
+  return post;
+}
+
+// EMAIL
+function sendEmail(){
+  const d=submitted?formData:collect();
+  const dLine=d.branch?d.department+' — '+d.branch:d.department;
+  const subj='AKGEC Alumni Meet 2026 — '+d.name+' | '+dLine+' | '+d.year;
+  const body='Dear '+d.name+',\n\nThank you for attending the 19th AKGEC Alumni Meet on 20 March 2026!\n\n'+
+'━━━━━━━━━━━━━━━━━━━━━━━\nPERSONAL DETAILS\n━━━━━━━━━━━━━━━━━━━━━━━\n'+
+'Name         : '+d.name+'\nDepartment   : '+d.department+'\nBranch       : '+(d.branch||'—')+'\nBatch        : '+d.year+'\nMobile       : '+d.phone+'\nEmail        : '+d.email+'\nCity         : '+(d.city||'—')+'\n\n'+
+'━━━━━━━━━━━━━━━━━━━━━━━\nPROFESSIONAL DETAILS\n━━━━━━━━━━━━━━━━━━━━━━━\n'+
+'Company      : '+d.company+'\nRole         : '+d.role+'\nFirst Company: '+d.firstCompany+'\nCareer Level : '+d.careerLevel+'\nIndustry     : '+d.industry+'\nHigher Edu   : '+d.higherEdu+'\nMentoring    : '+d.mentoring+'\nAchievement  : '+(d.achievement||'—')+'\n\n'+
+'━━━━━━━━━━━━━━━━━━━━━━━\nSOCIAL PROFILES\n━━━━━━━━━━━━━━━━━━━━━━━\n'+
+'LinkedIn  : '+d.linkedin+'\nFacebook  : '+(d.facebook||'—')+'\nTwitter/X : '+(d.twitter||'—')+'\n\n'+
+'━━━━━━━━━━━━━━━━━━━━━━━\nALUMNI MEET EXPERIENCE\n━━━━━━━━━━━━━━━━━━━━━━━\n'+
+'Overall mood : '+d.mood+'\nRating       : '+d.rating+'\nEnjoyed      : '+d.enjoyed+'\nNostalgic    : '+d.nostalgic+'\nNote         : '+(d.note||'—')+'\nMsg for AKGEC: '+d.msgAkgec+'\n\n'+
+'━━━━━━━━━━━━━━━━━━━━━━━\nYOUR SOCIAL POST\n━━━━━━━━━━━━━━━━━━━━━━━\n'+d.socialPost+'\n\n'+
+'Submitted: '+d.submittedAt+'\n\nWarm regards,\nAKGEC Department\nwww.akgec.ac.in';
+  const to=d.email+','+MAIL_TO;
+  window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  toast('📧 Email client opened!');
+}
+
+// CONFETTI
+function confetti(){
+  ['#c9943a','#e8b45a','#f5f0e8','#1a1710','#2d9e6b'].forEach(c=>{
+    for(let i=0;i<11;i++){
+      const el=document.createElement('div');
+      el.style.cssText='position:fixed;z-index:9999;pointer-events:none;left:'+Math.random()*100+'vw;top:-20px;background:'+c+';border-radius:'+(Math.random()>.5?'50%':'3px')+';width:'+(6+Math.random()*9)+'px;height:'+(6+Math.random()*9)+'px;animation:conffall '+(2.5+Math.random()*2)+'s ease-in '+(Math.random()*2.5)+'s forwards;';
+      document.body.appendChild(el);setTimeout(()=>el.remove(),6000);
+    }
+  });
+}
+
+// TOAST
+function toast(msg,dur=3200){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),dur);}
+
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCam();});
+window.addEventListener('beforeunload',()=>stopCam());
+</script>
+</body>
+</html>
