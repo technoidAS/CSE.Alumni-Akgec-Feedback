@@ -873,12 +873,10 @@ function validate(step){
       [v('f-year'),'Please select your passing year'],
       [v('f-company'),'Please enter your current company'],
       [v('f-role'),'Please enter your current designation'],
-      [v('f-first-co'),'Please enter your first company after AKGEC'],
-      // social validated separately via socialCheck()
+      [v('f-first-co'),'Please enter your first company after AKGEC']
     ];
     for(const[val,msg]of checks){if(!val){toast('⚠️ '+msg);return false;}}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('f-email'))){toast('⚠️ Please enter a valid email');return false;}
-    if(!v('f-linkedin')&&!v('f-fb')&&!v('f-x')){toast('⚠️ Please fill at least one social media link (LinkedIn preferred)');return false;}
   }
   if(step===2){
     if(!v('f-mood')){toast('⚠️ Please select how today felt (tap a mood)');return false;}
